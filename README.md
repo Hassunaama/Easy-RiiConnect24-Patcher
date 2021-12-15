@@ -8,16 +8,11 @@ RiiConnect24 Patcher is a program made for easier installation of RiiConnect24. 
 
 ### Features
 * Auto updating - Keep the patcher up-to-date!
-* Decide if you want to run the manual patching or automatic express installation.
-* Can patch your Wii, vWii and Dolphin Emulator.
+* Easiest patching ever - Just double click the file, and it does everything for you!
+* Can patch your Wii.
 * You only have to download a .bat file for patching all of the RiiConnect24 services.
 * The patcher will automatically download any files that are required to patch everything.
-* Copying patched files to an SD Card that is already connected to the PC.
-* Downloading Wii Mod Lite and RiiConnect24 Mail Patcher and putting it on SD Card along with the WADs.
-* Installing .WAD files directly to your SD Card.
-* Patching .WAD and .ISO/.WBFS games to work with Wiimmfi.
-* Homebrew Shop built into the patcher. Powered by [Open Shop Channel](https://oscwii.org/).
-* Translated to 11 languages. English, Dutch, French, German, Hungarian, Italian, Polish, Portuguese, Russian, Spanish and Swedish.
+* Downloading Wii Mod Lite and RiiConnect24 Mail Patcher along with the WADs.
 
 ### Works on these versions of Windows
 - [ ] Windows XP
