@@ -10,7 +10,7 @@ echo	The program is starting...
 
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.4.3
+set version=1.4.3 Fast
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2021 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -112,7 +112,7 @@ set at=22:36
 :: offlinestorage - Only used while testing of Update function, default=0
 :: FilesHostedOn - The website and path to where the files are hosted. WARNING! DON'T END WITH "/"
 :: MainFolder/TempStorage - folder that is used to keep version.txt and whatsnew.txt. These two files are deleted every startup but if offlinestorage will be set 1, they won't be deleted.
-set /a Update_Activate=1
+set /a Update_Activate=0
 set /a offlinestorage=0 
 if %beta%==0 set FilesHostedOn=https://patcher.rc24.xyz/update/RiiConnect24-Patcher/v1
 if %beta%==1 set FilesHostedOn=https://patcher.rc24.xyz/update/RiiConnect24-Patcher_BETA/v1
@@ -283,10 +283,6 @@ goto script_start_languages_2
 :script_start_languages_2
 echo.
 echo .. Checking for SD Card
-echo   :--------------------------------------------------------------------------------:
-echo   : Can you see an error box? Press `Continue`.                                    :
-echo   : There's nothing to worry about, everything is going ok. This error is normal.  :
-echo   :--------------------------------------------------------------------------------:
 echo.
 echo Checking now...
 call :detect_sd_card
@@ -2900,70 +2896,9 @@ goto not_windows_nt
 cls
 %mode_path% %mode%
 echo %header%
-echo              `..````
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+    %string1%
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.  1. %string2%
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   2. %string3%
-if not exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   3. %string4%
-if exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. %string4% (%string5%)
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   4. Troubleshooting
-if exist "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   5. %string6%
-if not exist "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   	
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   C. Change language
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM;
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.  %string7%  
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN   %string8%
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   
-if not %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   %string9% %sdcard%:\
-if %sdcard%==NUL echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy     %string10%
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.    R. %string11% ^| %string12%
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`    6. %string581%
-if %beta%==0 echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
-if %beta%==0 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
-if %beta%==0 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
-if %beta%==0 echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
-if %beta%==0 echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
-if %beta%==0 echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
-if %beta%==0 echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
-if %beta%==0 echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
-if %beta%==0 echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
-if %beta%==0 echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
-if %beta%==0 echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
-if %beta%==0 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
-if %beta%==0 echo                                   -odhhhhyddmmmmmNNmhs/:`
-if %beta%==0 echo                                     :syhdyyyyso+/-`
-if %beta%==1 echo ----------------------------------------------------------------------------------------------------:
-if %beta%==1 echo            .sho.          
-if %beta%==1 echo         .oy: :ys.          %string13%^!
-if %beta%==1 echo       -sy-     -ss-      
-if %beta%==1 echo    `:ss-   ...   -ss-`   
-if %beta%==1 echo  `:ss-`   .ysy     -ss:`   %string14%
-if %beta%==1 echo /yo.      .ysy       .oy:  %string15%
-if %beta%==1 echo :yo.      .hhh       .oy:  %string16%
-if %beta%==1 echo  `:ss-             -sy:` 
-if %beta%==1 echo     -ss-  `\./   -ss-`     
-if %beta%==1 echo       -ss-     -ss-        %string17%
-if %beta%==1 echo         -sy: :ys-          %string18%
-if %beta%==1 echo           .oho.            
-if %beta%==1 echo.
-set /p s=%string19%: 
-if %s%==1 goto begin_main1
-if %s%==2 goto credits
-if %s%==3 goto settings_menu
-if %s%==4 goto troubleshooting_menu
-if %s%==5 if exist "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" start "" "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" -run_once
-if %s%==r goto begin_main_refresh_sdcard
-if %s%==R goto begin_main_refresh_sdcard
-if %s%==c goto change_language
-if %s%==C goto change_language
-if %s%==6 goto donate_main
-if %s%==restart goto script_start
-if %s%==exit exit
+echo Original projects: https://github.com/dhtdht020/Unattended-WiiLink24-Patcher & https://github.com/RiiConnect24/RiiConnect24-Patcher
+goto begin_main1
+
 
 goto begin_main
 :donate_main
