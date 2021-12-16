@@ -3,7 +3,7 @@
 ![Production List](https://img.shields.io/discord/206934458954153984.svg?style=flat-square)
 ![Version Badge](https://img.shields.io/github/release/riiconnect24/RiiConnect24-Patcher.svg?style=flat-square)
 ![Download Counter](https://img.shields.io/github/downloads/RiiConnect24/RiiConnect24-Patcher/total.svg)
-
+## Original projects: https://github.com/dhtdht020/Unattended-WiiLink24-Patcher & https://github.com/RiiConnect24/RiiConnect24-Patcher!
 RiiConnect24 Patcher is a program made for easier installation of RiiConnect24. With it, you can just sit back and relax while the patcher does everything for you.
 
 ### Features
