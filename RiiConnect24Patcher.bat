@@ -2892,6 +2892,8 @@ echo Press any button or CTRL+C to quit.
 pause
 exit
 goto not_windows_nt
+
+
 :begin_main
 cls
 %mode_path% %mode%
@@ -2899,82 +2901,6 @@ echo %header%
 echo Original projects: https://github.com/dhtdht020/Unattended-WiiLink24-Patcher & https://github.com/RiiConnect24/RiiConnect24-Patcher
 goto begin_main1
 
-
-goto begin_main
-:donate_main
-cls
-echo %header%
-echo -----------------------------------------------------------------------------------------------------------------------------
-echo.
-echo R. %string356%
-echo.
-echo %string582%
-echo.
-echo 1. KcrPL [PayPal]
-echo  - %string583%
-echo.
-echo 2. RiiConnect24 [PayPal]
-echo 3. RiiConnect24 [Patreon]
-echo  - %string584%
-echo.
-set /p s=%string26%: 
-if %s%==1 start https://paypal.me/kcrplo
-if %s%==2 start https://www.paypal.me/RiiConnect
-if %s%==3 start https://www.patreon.com/bePatron?u=7497603
-if %s%==r goto begin_main
-if %s%==R goto begin_main
-goto donate_main
-:change_language
-cls
-echo %header%
-echo -----------------------------------------------------------------------------------------------------------------------------
-echo.
-echo Please select your language.
-echo.
-echo 1. English
-echo 2. Dutch
-echo 3. French
-echo 4. German
-echo 5. Hungarian
-echo 6. Italian
-echo 7. Polish
-echo 8. Portuguese (Brazilian)
-echo 9. Russian
-echo 10. Spanish
-echo 11. Swedish
-echo.
-set /p s=Choose: 
-if %s%==1 set language=English&call :set_language_english& goto begin_main
-if %s%==2 set language=nl-NL&call :set_language_dutch& goto begin_main
-if %s%==3 set language=fr-FR&call :set_language_french& goto begin_main
-if %s%==4 set language=de-DE&call :set_language_german& goto begin_main
-if %s%==5 set language=hu-HU&call :set_language_hungarian& goto begin_main
-if %s%==6 set language=it-IT&call :set_language_italian& goto begin_main
-if %s%==7 set language=pl-PL&call :set_language_polish& goto begin_main
-if %s%==8 set language=pt-BR&call :set_language_brazilian& goto begin_main
-if %s%==9 (
-			if %chcp_enable%==0 goto language_unavailable
-			set language=ru-RU
-			call :set_language_russian
-			goto begin_main
-			)
-if %s%==10 set language=es-ES&call :set_language_spanish& goto begin_main
-if %s%==11 set language=sv-SE&call :set_language_swedish& goto begin_main
-goto change_language
-
-:language_unavailable
-cls
-echo %header%
-echo -----------------------------------------------------------------------------------------------------------------------------
-echo.
-echo Outdated operating system. ^| Feature unavailable.
-echo.
-echo The language that you want to load only works on Windows 10 or newer.
-echo Please select English or any other language.
-echo.
-echo Press any key to go back.
-pause>NUL
-goto change_language
 
 :begin_main_refresh_sdcard
 set sdcard=NUL
@@ -3161,78 +3087,7 @@ echo.
 echo --- Testing completed ---
 pause
 goto troubleshooting_menu
-:settings_menu
-set /a vff_settings=0
-if exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" set /a vff_settings=1
-if exist "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" set /a vff_settings=1
-::
-cls
-echo %header%
-echo -----------------------------------------------------------------------------------------------------------------------------
-echo.
-echo %string27%.
-echo.
-echo 1. %string28%
-echo 2. %string29%
-if %Update_Activate%==1 echo 3. %string30%. [%string31%:  ON]
-if %Update_Activate%==0 echo 3. %string30%. [%string31%: OFF]
-if %preboot_environment%==0 if %beta%==0 echo 4. %string32% %string33% [%string31%: %string34%]
-if %preboot_environment%==0 if %beta%==1 echo 4. %string32% %string34%. [%string31%: %string33%]
-if %preboot_environment%==0 echo 5. %string35% (%string36%)
-echo 6. %string504% %string505% %random_identifier%
-if "%vff_settings%"=="1" echo -----------------------------------------------------------------------------------------------------------------------------
-echo.
-if "%vff_settings%"=="1" echo %string37%. 
-if "%vff_settings%"=="1" echo.
-if "%vff_settings%"=="1" echo 7. %string38%.
-if "%vff_settings%"=="1" echo 8. %string39%.
-if "%vff_settings%"=="1" echo 9. %string40%
-if %vff_settings%==1 echo.
-set /p s=%string26%:
-if %s%==1 goto begin_main
-if %s%==2 goto change_color
-if %s%==3 goto change_updating
-if %preboot_environment%==0 if %s%==4 goto change_updating_branch
-if %preboot_environment%==0 if %s%==5 goto update_files
-if %s%==6 (
-	call :generate_identifier 
-	for /f "usebackq" %%a in ("%MainFolder%\random_ident.txt") do set random_identifier=%%a
-	)
-if %s%==7 if %vff_settings%==1 goto settings_del_config_VFF
-if %s%==8 if %vff_settings%==1 goto settings_del_vff_downloader
-if %s%==9 if %vff_settings%==1 goto settings_taskkill_vff
 
-
-goto settings_menu
-:settings_del_config_VFF
-::Stop the downloader
-taskkill /im VFF-Downloader-for-Dolphin.exe /f
-::Delete it's direcory
-rmdir /s /q "%appdata%\VFF-Downloader-for-Dolphin"
-::And delete it out of the autostart dir
-del /q "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
-del /q "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe"
-echo Done^^!
-pause
-goto settings_menu
-
-:settings_del_vff_downloader
-::Stop the downloader
-taskkill /im VFF-Downloader-for-Dolphin.exe /f
-::And delete it out of the autostart dir
-del /q "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
-
-echo Done^^!
-pause
-goto settings_menu
-
-:settings_taskkill_vff
-::Stop the downloader
-taskkill /im VFF-Downloader-for-Dolphin.exe /f
-
-echo Done^^!
-pause
-goto settings_menu
 
 
 :change_updating_branch
@@ -3429,39 +3284,12 @@ goto begin_main
 cls
 echo %header%
 echo.
-echo              `..````                                     :-------------------------:
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`    %string71%
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd    %string72%
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs   :-------------------------:
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+   
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:   File 1 [3.5MB] out of 1
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.   0%% [          ]
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
-echo                                   -odhhhhyddmmmmmNNmhs/:`
-echo                                     :syhdyyyyso+/-`
+echo Downloading curl... Please wait.
+echo This can take some time
+echo.
+echo File 1 [3.5MB] out of 1
+echo 0%% [          ]
+echo
 call powershell -command (new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/curl.exe', 'curl.exe')
 set /a temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto begin_main_download_curl_error
